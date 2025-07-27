@@ -4,7 +4,7 @@ Este repositório contém scripts auxiliares para uso com o Zabbix.
 
 ## Como usar
 
-1. **Copie os scripts** deste repositório para o servidor onde o Zabbix Agent está instalado.
+1. **Copie os scripts** deste repositório para o host onde o Zabbix Agent está instalado.
 2. **Edite o arquivo `zabbix_agentd.conf`** para adicionar ou modificar as entradas `UserParameter` conforme necessário para cada script.
 3. **Crie manualmente os itens e triggers** na interface do Zabbix, utilizando os comandos definidos nos `UserParameter`.
 
