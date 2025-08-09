@@ -19,4 +19,4 @@ Este repositório contém scripts auxiliares para uso com o Zabbix.
     ```
 - Certifique-se de testar cada script manualmente antes de utilizá-lo no Zabbix.
 - Este repositório **não** inclui templates, itens ou triggers prontos para importação.
-- O arquivo `ZabbixAgent.bat` fornece um menu interativo para iniciar, parar ou verificar o status do serviço do Zabbix Agent. Ele é útil em ambientes de laboratório onde não é necessário manter o agente em execução o tempo todo.
+- O arquivo `ZabbixAgent.bat` fornece um menu interativo para iniciar, parar ou verificar o status do serviço do Zabbix Agent. Ele é útil em ambientes de laboratório onde não é necessário manter o agente em execução o tempo todo. Idem para o arquivo `ZabbixAgent.sh` nos hosts linux, necessário permissão de execução com `chmod +x ZabbixAgent.sh` e execute com: `./ZabbixAgent.sh`
