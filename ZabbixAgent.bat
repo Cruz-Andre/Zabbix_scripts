@@ -23,20 +23,20 @@ goto MENU
 :START
 echo.
 echo Iniciando o Zabbix Agent...
-sc start "Zabbix Agent"
+sc start "Zabbix Agent 2"
 pause
 goto MENU
 
 :STOP
 echo.
 echo Parando o Zabbix Agent...
-sc stop "Zabbix Agent"
+sc stop "Zabbix Agent 2"
 pause
 goto MENU
 
 :STATUS
 echo.
 echo Status do Zabbix Agent:
-sc query "Zabbix Agent"
+sc query "Zabbix Agent 2"
 pause
 goto MENU
