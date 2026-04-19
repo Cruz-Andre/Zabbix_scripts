@@ -18,6 +18,5 @@ Todo o `UserParemeter` da descoberta está no arquivo `nvidia_smi.conf`
 4. Faça as devidas modificações de acordo com as suas regras de negócio
 
 ## Observações
-- O arquivo `ZabbixAgent.bat` fornece um menu interativo para iniciar, parar ou verificar o status do serviço do Zabbix Agent em hosts Windows. 
+- O arquivo `ZabbixAgent2.bat` fornece um menu interativo para iniciar, parar ou verificar o status do serviço do Zabbix Agent em hosts Windows e ainda desativa a regra no firewall (fecha a porta 10050).
 - Ele é útil em ambientes de laboratório onde não é necessário manter o agente em execução o tempo todo. Idem para o arquivo `ZabbixAgent.sh` nos hosts linux, necessário permissão de execução com `chmod +x ZabbixAgent.sh` e execute com: `./ZabbixAgent.sh`
-- O `ZabbixAgent2.bat` é o mesmo só que desativa a regra no firewall (fecha a porta 10050).
