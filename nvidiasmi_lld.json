@@ -1,0 +1,101 @@
+{
+    "zabbix_export": {
+        "version": "7.4",
+        "template_groups": [
+            {
+                "uuid": "a571c0d144b14fd4a87a9d9b2aa9fcd6",
+                "name": "Templates/Applications"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "45ad77fea5664d4ab341a2a372a791dc",
+                "template": "NVIDIA SMI LLD",
+                "name": "NVIDIA SMI LLD",
+                "description": "Usando o nvidia-smi.exe com Low Level Discovery",
+                "groups": [
+                    {
+                        "name": "Templates/Applications"
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "uuid": "ab9db12d6d3047e7a3efad270c799d17",
+                        "name": "Descoberta de GPUs Nvidia",
+                        "key": "nvidia.gpu.discovery",
+                        "delay": "1d",
+                        "lifetime": "3d",
+                        "description": "Descobrir gpus da nvidia nos hosts.\nConfig:\nUserParameter=nvidia.gpu.discovery, powershell -Command \"$data = nvidia-smi --query-gpu=index,name --format=csv,noheader,nounits; $list = foreach ($line in $data) { if ($line -match '(.+), (.+)') { @{ '{#GPU_INDEX}' = $matches[1].Trim(); '{#GPU_NAME}' = $matches[2].Trim() } } }; ConvertTo-Json -InputObject @($list) -Compress\"",
+                        "item_prototypes": [
+                            {
+                                "uuid": "a86fdfd454704325bfc15705c4836cd9",
+                                "name": "GPU {#GPU_INDEX} ({#GPU_NAME}): Velocidade da Ventoinha",
+                                "key": "nvidia.gpu.fanspeed[{#GPU_INDEX}]",
+                                "units": "%",
+                                "description": "Captura o uso da ventoinha em %",
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "adab05b2d5894f968bd548b2127f8aaa",
+                                        "expression": "last(/NVIDIA SMI LLD/nvidia.gpu.fanspeed[{#GPU_INDEX}])>{$FAN_SPEED}",
+                                        "name": "A GPU {#GPU_NAME} est\u00e1 com uso da ventoinha acima de {$FAN_SPEED}% no host {HOST.NAME}",
+                                        "priority": "HIGH",
+                                        "manual_close": "YES"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "0fa2912493134861b49ad721bfa496ee",
+                                "name": "GPU {#GPU_INDEX} ({#GPU_NAME}): Temperatura",
+                                "key": "nvidia.gpu.temperature[{#GPU_INDEX}]",
+                                "units": "\u00baC",
+                                "description": "Captura a temperatura da GPU em \u00baC",
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "b0daedc226a24f38b2542c0b5ffbc7a1",
+                                        "expression": "last(/NVIDIA SMI LLD/nvidia.gpu.temperature[{#GPU_INDEX}])>{$GPU_TEMP}",
+                                        "name": "A GPU {#GPU_NAME} est\u00e1 com a temperatura acima de {$GPU_TEMP}\u00baC no host {HOST.NAME}",
+                                        "priority": "HIGH",
+                                        "manual_close": "YES"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "316fb0f944c54903b72dae65d33c4983",
+                                "name": "GPU {#GPU_INDEX} ({#GPU_NAME}): Uso de GPU",
+                                "key": "nvidia.gpu.usage[{#GPU_INDEX}]",
+                                "units": "%",
+                                "description": "Captura o uso da GPU em %",
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "c16496f423b240fd89856f764e4864cc",
+                                        "expression": "last(/NVIDIA SMI LLD/nvidia.gpu.usage[{#GPU_INDEX}])>{$GPU_USAGE}",
+                                        "name": "A GPU {#GPU_NAME} est\u00e1 com uso elevado acima de {$GPU_USAGE}% no host {HOST.NAME}",
+                                        "priority": "HIGH",
+                                        "manual_close": "YES"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "macros": [
+                    {
+                        "macro": "{$FAN_SPEED}",
+                        "value": "40",
+                        "description": "Velocidade da ventoinha em %"
+                    },
+                    {
+                        "macro": "{$GPU_TEMP}",
+                        "value": "40",
+                        "description": "Temperatura da GPU em \u00baC"
+                    },
+                    {
+                        "macro": "{$GPU_USAGE}",
+                        "value": "40",
+                        "description": "Uso da GPU em %"
+                    }
+                ]
+            }
+        ]
+    }
+}
