@@ -2,7 +2,7 @@
 
 Este repositório contém templates auxiliares para uso com o Zabbix 7.4 e usando o agente 2 nos hosts. 
 
-## Template `nvidiasmi_ldd.json`
+## Template `nvidiasmi_lld.json`
 Template com descoberta por Low Level Discovery do Zabbix. <br>
 Este template descobre as placas de video da NVIDIA nos hosts pegando a quantidade de placas por host e os nomes das mesmas. <br> 
 Todo o `UserParemeter` da descoberta está no arquivo `nvidia_smi.conf`
